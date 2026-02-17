@@ -1,0 +1,29 @@
+# Virtual environments
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyTorch / HuggingFace cache (optional but recommended)
+.cache/
+huggingface/
+transformers/
+
+# Model checkpoints / outputs
+moderation_model/
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Environment variables
+.env
+
