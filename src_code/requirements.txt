@@ -8,3 +8,6 @@ Pillow
 sqlalchemy
 datasets
 python-multipart
+nltk
+torchvision
+cryptography
