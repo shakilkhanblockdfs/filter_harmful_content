@@ -4,3 +4,7 @@ torch
 transformers
 pydantic
 numpy
+Pillow
+sqlalchemy
+datasets
+python-multipart

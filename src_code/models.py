@@ -1,6 +1,6 @@
 # models.py
 import torch
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, CLIPProcessor, CLIPModel
 import numpy as np
 
 class TextModerationModel:
@@ -28,3 +28,16 @@ class TextModerationModel:
             "scores": scores,
             "risk_score": risk_score
         }
+
+class ImageModerationModel:
+    def __init__(self, model_name="openai/clip-vit-base-patch32"):
+        self.processor = CLIPProcessor.from_pretrained(model_name)
+        self.model = CLIPModel.from_pretrained(model_name)
+        self.model.eval()
+
+    def predict(self, image, text_prompts):
+        inputs = self.processor(text=text_prompts, images=image, return_tensors="pt", padding=True)
+        outputs = self.model(**inputs)
+        logits_per_image = outputs.logits_per_image
+        probs = logits_per_image.softmax(dim=1).cpu().detach().numpy()
+        return probs
